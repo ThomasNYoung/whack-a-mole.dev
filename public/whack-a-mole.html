@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>whack a mole</title>
+	<title>Whack-a-Square</title>
 	<link rel="stylesheet" href="/whack-a-mole.css">
 	<link rel="stylesheet" href="/whack-a-mole.js">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -15,8 +15,8 @@
 <body>
 	<div class='container'>
 		<div class='content' id='wrapper'>
-		<h1>click a box</h1>
-		<button class='start btn btn-lrg btn-primary btn-block'  id='start'>rock n roll</button>
+		<h1>Click a box</h1>
+		<button class='start btn btn-lrg btn-primary btn-block'  id='start'>Rock n Roll!</button>
 		<input type='text' id='score' readonly=""> <br>
 		<input type='text' id='high score' readonly=''><br>
 			<div class='mole second' id='0'></div>
@@ -40,24 +40,21 @@
 	var interval = 1000
 	var done = $('.second')
 	
-	//this function adds/removes class to populate div box. it also adds a second
-	//class in order
+	//this function adds/removes class to populate div box. 
 	function popupBox() {
 		disable();
 		enable();
-		$('#score').val("score: " + score);	
+		$('#score').val("Score: " + score);	
 		console.log('hello')
 		random = Math.floor(Math.random() * 9)
 			$('#' + random).addClass('box')
-			
 		setTimeout(function(){ 
 			$('#'+ random).removeClass('box')
-			
 			},interval);
 		playBack();
 	};
-
-	
+			
+	//calls back popUpBox function at a set interval
 	function playBack() {
 		clearInterval(intervalId);
 	    intervalId = setInterval(function() {
@@ -71,7 +68,8 @@
 	function disable(){
 		$('.mole').off('click');
 	}
-	 
+			
+	//removes class from defined in css and adds score  
 	function makeItDisappear() {
 		if($(this).hasClass('box')){
 			$(this).removeClass('box');
@@ -84,19 +82,20 @@
 		}
 	};
 
+	//causes 'mole' to appear quicker everytime its successfully clicked
 	function speedUp() {
 		
 		interval = interval - 50
 		console.log('faster')
 	}
-	
+		
+	//alerts when clicked outside of 'mole'
 	function gameOver() {
 			
 			alert('game over')
 			console.log('game over')
 		
 		location.reload(true);
-		
 	}
 	        
 		
